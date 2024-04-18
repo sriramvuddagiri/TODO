@@ -1,0 +1,48 @@
+<div class="container">
+
+  <H1>Todo</H1>
+
+  <!-- <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">Enter valid values</div>
+  <div class="alert alert-warning" *ngIf="todoForm.dirty && targetDate.invalid">Enter valid Target Date</div>
+  <div class="alert alert-warning" *ngIf="todoForm.dirty && description.invalid">Enter atleast 5 characters in Description</div> -->
+  
+  <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm" name="todoForm">
+    <fieldset class="form-group">
+      <label>Title</label>
+      <input type="text" #Title="ngModel" 
+            [(ngModel)]="todo.title" class="form-control" 
+                name="Title" required="required" minlength="5">
+    </fieldset>
+    <fieldset class="form-group">
+      <label>Description</label>
+      <input type="text" #description="ngModel" 
+            [(ngModel)]="todo.taskDescription" class="form-control" 
+                name="description" required="required" minlength="5">
+    </fieldset>
+
+    <fieldset class="form-group">
+        <label>Due Date</label>
+        <input type="date" #dueDate="ngModel"
+        [ngModel]="todo.dueDate | date:'yyyy-MM-dd' "
+        (ngModelChange)="todo.dueDate = $event"
+        class="form-control" name="dueDate" required="required" >
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label>Status</label>
+      <select id="status" #status="ngModel"
+      [(ngModel)]="todo.status "
+      class="form-control" name="status" required="required" >
+        <option value="Inprogress">Inprogress</option>
+        <option value="Completed">Completed</option>
+        <option value="Pending">Pending</option>
+      </select>
+  </fieldset>
+
+
+
+    <button type="submit" class="btn btn-success"  >Save</button>
+    &nbsp;&nbsp;
+    <a class="btn btn-default btn-secondary" routerLink="/todo-list">Back</a>
+  </form>  
+</div>
